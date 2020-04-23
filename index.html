@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 
 <head>
   <meta charset="UTF-8">
@@ -13,11 +13,47 @@
 
 <body>
   <header>
-    <h1>The name of your quiz</h1>
+    <h1>Welcome to the Animal Groups Quiz!</h1>
   </header>
-  <main></main>
+  <main>
+    <h2 class="question-number">Question x of 5</h2>
+    <form role= "form" action="" method="post">
+      <h3 class="question">What is a group of Geese called?</h3>
+      <input id="Giggle" type="radio" name="Goose" value="Giggle" /> <label for="Giggle">Giggle</label><br>
+      <input id="Google" type="radio" name="Goose" value="Google" /> <label for="Google">Google</label><br>
+      <input id="Gaggle" type="radio" name="Goose" value="Gaggle" /> <label for="Gaggle">Gaggle</label><br>
+      <input id="Goggle" type="radio" name="Goose" value="Goggle" /> <label for="Goggle">Goggle</label><br>
+      <button type="submit" class="submit-button">Submit</button>
+    </form>
+    <p role="score-tracker" class="score-tracker">Score x out of y</p>
+  <br>
+  <br>
+  <h2 class="result-display">Correct/Incorrect!</h2>
+  <p role="correct-answer" class="correct-answer">A group of Geese is called a Gaggle</p>
+  <p role="score-tracker" class="score-display score-tracker">Score x out of y</p>
+  <form role= "form" action="" method="post">
+    <button type="submit" class="next-button">Next</button>
+  </form>
+  <br>
+  <br>
+  <h2 class="completion-message">Congratulations! You have finished the quiz!</h2>
+  <h3 class="final-result-display">Your Final Score is:</h3>
+  <p class="score-tracker score-display">Correct: X Incorrect: Y</p>
+  <form role= "form" action="" method="post">
+    <button type="submit" class="restart-button">Restart The Quiz</button>
+  </form>
+  </main>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.js" crossorigin="anonymous"></script>
-  <script src="app.js"></script>
+  <script src="app.js"></script> 
 </body>
 
 </html>
+<!-- 
+<form class="demo-form" action="/some-server-endpoint" method ="post">
+  <h1>Tell us about yourself</h1>
+  <fieldset name="contact-info">
+    <legend>Contact info</legend>
+    <label for="first-name">First name</label>
+    <input placeholder="Dweezil" type="text" name="first-name" id="first-name" />
+ -->
+
