@@ -9,57 +9,59 @@ const store = {
     {
       question: 'What is a group of geese called?',
       answers: [
-        'A giggle',
-        'A gaggle',
-        'A google',
-        'A goggle'
+        'a giggle',
+        'a gaggle',
+        'a google',
+        'a goggle'
       ],
-      correctAnswer: 'A gaggle'
+      correctAnswer: 'a gaggle'
     },
     {
       question: 'What is a group of bunnies called?',
       answers: [
-        'A fluffle',
-        'A fluffy',
-        'A floofle',
-        'A falafle'
+        'a fluffle',
+        'a fluffy',
+        'a floofle',
+        'a falafle'
       ],
-      correctAnswer: 'A fluffle'
+      correctAnswer: 'a fluffle'
     },
     {
       question: 'What is a group of penguins called?',
       answers: [
-        'A wiggle',
-        'A waggle',
-        'A waddle',
-        'A woggle'
+        'a wiggle',
+        'a waggle',
+        'a waddle',
+        'a woggle'
       ],
-      correctAnswer: 'A waddle'
+      correctAnswer: 'a waddle'
     },
     {
       question: 'What is a group of rhinos called?',
       answers: [
-        'A smash',
-        'A crash',
-        'A crush',
-        'A smoosh'
+        'a smash',
+        'a crash',
+        'a crush',
+        'a smoosh'
       ],
-      correctAnswer: 'A crash'
+      correctAnswer: 'a crash'
     },
     {
       question: 'What is a group of hedgehogs called?',
       answers: [
-        'An array',
-        'A float',
-        'A string',
-        'A boolean'
+        'an array',
+        'a float',
+        'a string',
+        'a boolean'
       ],
-      correctAnswer: 'An array'
+      correctAnswer: 'an array'
     }
   ],
   quizStarted: false,
   questionNumber: 0,
-  score: 0
+  score: 0,
+  hasAnswered: 0,
+  isCorrect: true
 };
 
 /**
@@ -89,7 +91,7 @@ function generateStartPageHtml(){
 
 //keeps track of score
 function scoreTracker() {
-  return `<div class="score-tracker">Score $(store.score) out of $(store.questions.length)</div>`;
+  return `<div class="score-tracker">Score ${store.score} out of ${store.questions.length}</div>`;
 }
 
 //generates an answer array and HTML
@@ -100,7 +102,7 @@ function generateAnswers() {
 
   ansArr.forEach(answer => {
     answerHtml += 
-    `<input id="answer$(i + 1)" type="radio" name="answer" value="$(answer)" tabindex="$(i + 1)" required/><label for="answer$(i + 1">$(answer)</label>`;
+    `<input id="answer${i + 1}" type="radio" name="answer" value="${answer}" tabindex="${i + 1}" required/><label for="answer${i + 1}">${answer}</label>`;
     i++;
   });
   return answerHtml;
@@ -109,17 +111,35 @@ function generateAnswers() {
 //generates the question
 function generateQuestionPageHtml(){
   let currentQuestion = store.questions[store.questionNumber];
-  return `<div class="question-number">Question $(store.questionNumber + 1) of $(store.questions.length)</div>
-  <form id="quiz-form" action="" method="post">
-    <legend class="question">$(questionNumber.question)</legend>
-    $(generateAnswers())
+  return `<div class="question-number">Question ${store.questionNumber + 1} of ${store.questions.length}</div>
+  <form id="quiz-form">
+    <legend class="question">${currentQuestion.question}</legend>
+    ${generateAnswers()}
     <button type="submit" class="submit-button">Brace for the answer</button>
   </form>
-  $(scoreTracker)`;
+  ${scoreTracker()}`;
 
 }
 
-function generateAnswerPageHtml(isCorrect){
+function generateAnswerPageHtml(){
+  const answersArray = store.questions[store.questionNumber].answers;
+  console.log(`store.isCorrect is ${store.isCorrect}`);
+  let resultDisplay = '';
+  if (store.isCorrect === true) {
+    resultDisplay = 'Correct!';
+  }
+  else {
+    resultDisplay = 'Incorrect!';
+  }
+  
+  return ` 
+  <section class="result-display">
+    <p>${resultDisplay}</p>
+    <p class="correct-answer"> They are called ${store.questions[store.questionNumber].correctAnswer}.</p>
+    <p class="score-display score-tracker">${scoreTracker()}</p>
+    <button type="button" class="next-button">Run to the next question</button> 
+  </section>`;
+
 //if isCorrect = true 
 //  generate CORRECT!
 // let congratMessage = Correct
@@ -135,16 +155,15 @@ function generateAnswerPageHtml(isCorrect){
 }
 
 function generateResultsPageHtml(){
-
+  return `<p> Hello World! </p>`;
 }
 
 // this function should reset the quiz
 function resetQuiz() {
   console.log('`resetQuiz` ran');
-  // quizStarted: false,
-  // questionNumber: 0,
-  // score: 0
-  renderQuizApp();
+  store.quizStarted = false;
+  store.questionNumber = 0;
+  store.score = 0;
 }
 
 /********** RENDER FUNCTION(S) **********/
@@ -154,27 +173,26 @@ function resetQuiz() {
 function renderQuizApp() {
   console.log('`renderQuizApp` ran');
   let quizHtml = ''
-  if (quizStarted === false) {
+  console.log(store.hasAnswered, store.questionNumber);
+  if (store.quizStarted === false) {
     $('main').html(generateStartPageHtml);
+    //handleStartButton();
   }
-  else if () {
-    $('main').html(generateQuestionHtml);
+  else if (store.hasAnswered > store.questionNumber) {
+    $('main').html(generateAnswerPageHtml);
   }
-
-  else() {
-    $('main').html(generateQuestionHtml);
+  else if (store.quizStarted === true && store.questionNumber < store.questions.length) {
+    $('main').html(generateQuestionPageHtml);
   }
-  
-  $('main').html();
+  else {
+    $('main').html(generateResultsPageHtml);
+  }
 }
 // startPg -> if quizStarted = false
 // => click START
 // => questionPg -> if quizStart = true && questionNumber < store.questions.length
 // => click SUBMIT
-// => answerPg -> *questionsAnswered* = questionNumber ? 
-// if update questionNumber++ on handleSumbitButton
-//      answerPg -> *questionsAnswered* === questionNumber - 1
-//      click next, we'll update the questionsAnswered++
+// => answerPg -> hasAnswered === questionNumber 
 // => click NEXT
 // => questionPg -> same as above until all quest. asnwered
 // => click NEXT
@@ -192,43 +210,46 @@ function renderQuizApp() {
 
 //initializes quiz and updates quizStarted var
 function handleStartButton() {
-  event.preventDefault();
-  console.log('`handleStartButton` ran');
-  store.quizStarted = true;
-  generateQuestionPageHtml();
+  $('main').on('click', '.start-button', event => {
+    console.log('`handleStartButton` ran');
+    event.preventDefault();
+    store.quizStarted = true;
+    renderQuizApp();
+  });
 }
 
 // this function will be responsible for when users interact with the "submit" button to submit their 
 // answer to each question of the quiz. This takes you to the answer page every time. 
 function handleSubmitButton() {
-  //.on submit
-  $('main').on('submit', 'submit-button', event =>
-  event.preventDefault();
-  console.log('`handleSubmitButton` ran');
-  const userAnswer =$('input[name="answer"].checked').val();
-  console.log(userAnswer);
-  checkAnswer();
+  $('main').on('submit', '#quiz-form', event => {
+    console.log('`handleSubmitButton` ran');
+    event.preventDefault();
+    const userAnswer = $('input[name="answer"]:checked').val();
+    console.log(userAnswer);
+    checkAnswer(userAnswer);
+  });
   //move to answer pg
   //which question came from to display corresponding ans
   //call checkAnswer
-  )
-  
 }
 
 // this function will be responsible for verifying if the user selected the correct answer choice. 
 function checkAnswer(userAnswer) {
   console.log('`checkAnswer` ran');
-  if(userAnswer === store.correctAnswer) {
-    let isCorrect = true;
-    score++;
+  console.log(userAnswer);
+  console.log(store.questions[store.questionNumber].correctAnswer);
+  if(userAnswer === store.questions[store.questionNumber].correctAnswer) {
+    store.isCorrect = true;
+    store.score++;
     console.log('`checkAnswer` true');
-  } else {
-    let isCorrect = false;
+  } 
+  else {
+    store.isCorrect = false;
     console.log('`checkAnswer` false');
   }
-  const answerNumber = store.questionNumber;
-  store.questionNumber++;
-  generateAnswerPageHtml();
+  store.hasAnswered++;
+  renderQuizApp();
+
   //know what question -> ans selected
   //check to see ans correct
   //arr{obj -> ans: [arr]}
@@ -236,22 +257,27 @@ function checkAnswer(userAnswer) {
   //when called, render generateAnswerPageHtml()
 }
 
-
-// this function will be responsible for when users interact with the "start" and "next quesdtion" button to proceed to the
+// this function will be responsible for when users interact with the "next quesdtion" button to proceed to the
 // next quiz question. This will always take you to a question unless you are done with the quiz. 
 function handleNextButton() {
-  //.on click
-  //event.preventDefault();
   console.log('`handleNextButton` ran');
+  $('main').on('click', '.next-button', event => {
+    event.preventDefault();
+    store.questionNumber++;
+    //store.hasAnswered++;
+    renderQuizApp();
+  });
 }
 
 // this function will be responsible for when users interact with the "restart quiz" button to start
 // the quiz over again. We will need a JS reset not a page reload. 
 function handleRestartButton() {
-  //.on click
-  //event.preventDefault();
   console.log('`handleRestartButton` ran');
-  resetQuiz();
+  $('main').on('click', '.restart-button', event => {
+    event.preventDefault();
+    resetQuiz();
+    renderQuizApp();
+  });
 }
 
 
@@ -263,10 +289,8 @@ function handleQuizApp() {
   renderQuizApp();
   handleStartButton();
   handleSubmitButton();
-  checkAnswer();
   handleNextButton();
   handleRestartButton();
-  
 }
 
 // when the page loads, call `handleQuizApp`
