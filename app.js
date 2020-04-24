@@ -138,6 +138,15 @@ function generateResultsPageHtml(){
 
 }
 
+// this function should reset the quiz
+function resetQuiz() {
+  console.log('`resetQuiz` ran');
+  // quizStarted: false,
+  // questionNumber: 0,
+  // score: 0
+  renderQuizApp();
+}
+
 /********** RENDER FUNCTION(S) **********/
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
@@ -158,6 +167,20 @@ function renderQuizApp() {
   
   $('main').html();
 }
+// startPg -> if quizStarted = false
+// => click START
+// => questionPg -> if quizStart = true && questionNumber < store.questions.length
+// => click SUBMIT
+// => answerPg -> *questionsAnswered* = questionNumber ? 
+// if update questionNumber++ on handleSumbitButton
+//      answerPg -> *questionsAnswered* === questionNumber - 1
+//      click next, we'll update the questionsAnswered++
+// => click NEXT
+// => questionPg -> same as above until all quest. asnwered
+// => click NEXT
+// => feedbackPg (final result page) -> else statement
+// => click RESTART
+// => JS reset and back to startPg
 
 /********** EVENT HANDLER FUNCTIONS **********/
 
@@ -166,6 +189,14 @@ function renderQuizApp() {
 //   When the user submits the form,
 //   Check what answer they picked
 //   And tell them if they're correct
+
+//initializes quiz and updates quizStarted var
+function handleStartButton() {
+  event.preventDefault();
+  console.log('`handleStartButton` ran');
+  store.quizStarted = true;
+  generateQuestionPageHtml();
+}
 
 // this function will be responsible for when users interact with the "submit" button to submit their 
 // answer to each question of the quiz. This takes you to the answer page every time. 
@@ -205,13 +236,7 @@ function checkAnswer(userAnswer) {
   //when called, render generateAnswerPageHtml()
 }
 
-//initializes quiz and updates quizStarted var
-function handleStartButton() {
-  event.preventDefault();
-  console.log('`handleStartButton` ran');
-  store.quizStarted = true;
-  generateQuestionPageHtml();
-}
+
 // this function will be responsible for when users interact with the "start" and "next quesdtion" button to proceed to the
 // next quiz question. This will always take you to a question unless you are done with the quiz. 
 function handleNextButton() {
@@ -229,22 +254,18 @@ function handleRestartButton() {
   resetQuiz();
 }
 
-// this function should reset the quiz
-function resetQuiz() {
-  console.log('`resetQuiz` ran');
-  // quizStarted: false,
-  // questionNumber: 0,
-  // score: 0
-  renderQuizApp();
-}
+
 
 // this function will be our callback when the page loads. it's responsible for
 // initially rendering the Quiz App, and activating our individual template generate functions
 // that change the HTML on the DOM depending on the current state. verify the user's answer choice and user interaction with the "submit answer", "next question" and "quiz restart" buttons.
 function handleQuizApp() {
   renderQuizApp();
+  handleStartButton();
   handleSubmitButton();
   checkAnswer();
+  handleNextButton();
+  handleRestartButton();
   
 }
 
