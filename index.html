@@ -18,37 +18,34 @@
   <main>
 
     <p>Many animals have interesting named groups. Join our gang (elk), and see how many you know!</p>
-    <button type="submit" class="start_ quiz">Flock to the test</button>
+    <button type="button" class="forward-button">Flock to the test</button>
     <!-- flocks are for many birds, as I'm sure you know -->
 
-    <img src="" class="background-image" role="presentation" alt="">
-
-    <h2 class="question-number">Question x of 5</h2>
+    <div class="question-number">Question x of 5</div>
     <form id="quiz-form" action="" method="post">
-      <h3 class="question">What is a group of Geese called?</h3>
-      <input id="Giggle" type="radio" name="Goose" value="Giggle" /> <label for="Giggle">Giggle</label>
-      <input id="Google" type="radio" name="Goose" value="Google" /> <label for="Google">Google</label>
-      <input id="Gaggle" type="radio" name="Goose" value="Gaggle" /> <label for="Gaggle">Gaggle</label>
-      <input id="Goggle" type="radio" name="Goose" value="Goggle" /> <label for="Goggle">Goggle</label>
+      <legend class="question"></legend>
+      <input id="answer1" type="radio" name="Goose" value="Giggle" /> <label for="answer1">Giggle</label>
+      <input id="answer2" type="radio" name="Goose" value="Google" /> <label for="answer2">Google</label>
+      <input id="answer3" type="radio" name="Goose" value="Gaggle" /> <label for="answer3">Gaggle</label>
+      <input id="answer4" type="radio" name="Goose" value="Goggle" /> <label for="answer4">Goggle</label>
+      <button type="submit" class="submit-button">Brace for the answer</button>
     </form>
-    <p class="score-tracker">Score x out of y</p>
-    <button type="submit" class="submit-button">Brace for the answer</button>
+    <div class="score-tracker">Score x out of y</div>
     <!-- brace is for mallards -->
 
   <section class="result-display">
     <p>Correct/Incorrect!</p>
     <p class="correct-answer">A group of Geese is called a Gaggle</p>
     <p class="score-display score-tracker">Score x out of y</p>
-    <button type="submit" class="next-button">Run to the next question</button>
+    <button type="button" class="forward-button">Run to the next question</button>
   </section>
   <!-- run is for salmon -->
   
-
   <section class="completion-message">
     <p>Congratulations! You have finished the quiz!</p>
     <p class="final-result-display">Your Final Score is:</p>
     <p class="score-tracker score-display">Correct: X Incorrect: Y</p>
-    <button type="submit" class="restart-button">Cast back to the start</button>
+    <button type="button" class="restart-button">Cast back to the start</button>
   </section>
 <!-- cast is for hawks -->
 

@@ -81,9 +81,42 @@ const store = {
 
 // These functions return HTML templates
 
+function generateStartPageHtml(){
+
+}
+
+function generateQuestionPageHtml(){
+  
+}
+
+function generateAnswerPageHtml(){
+
+}
+
+function generateResultsPageHtml(){
+
+}
+
 /********** RENDER FUNCTION(S) **********/
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
+
+function renderQuizApp() {
+  console.log('`renderQuizApp` ran');
+  let quizHtml = ''
+  if (quizStarted === false) {
+    $('main').html(generateStartPageHtml);
+  }
+  else if () {
+    $('main').html(generateQuestionHtml);
+  }
+
+  else() {
+    $('main').html(generateQuestionHtml);
+  }
+  
+  $('main').html();
+}
 
 /********** EVENT HANDLER FUNCTIONS **********/
 
@@ -93,62 +126,49 @@ const store = {
 //   Check what answer they picked
 //   And tell them if they're correct
 
-
-// this function will be responsible for rendering the quiz app in it's current state
-// to the DOM
-function renderQuizApp() {
-
-  console.log('`renderQuizApp` ran');
-  const x = ''
-  //insert HTML into the DOM
-  $('#.class-or-id-goes-here').html(const from above?);
-}
-
 // this function will be responsible for when users interact with the "submit" button to submit their 
-// answer to each question of the quiz.
+// answer to each question of the quiz. This takes you to the answer page every time. 
 function handleSubmitButton() {
-
+  //.on submit
   console.log('`handleSubmitButton` ran');
 }
 
 // this function will be responsible for verifying if the user selected the correct answer choice. 
-function verifyAnswerChoice() {
+function checkAnswer() {
 
-  console.log('`verifyAnswerChoice` ran');
+  console.log('`checkAnswer` ran');
 }
 
-// this function will be responsible for displaying a text description of the correct answer once the user has
-// submitted their answer to the quiz question. **Not sure this is necessary because renderQuizApp() may do this
-// already once the users hits submit?**
-function displayAnswerFeedback() {
-
-  console.log('`displayAnswerFeedback` ran');
-}
-
-// this function will be responsible for when users interact with the "next question" button to proceed to the
-// next quiz question.
-function handleNextButton() {
-
-  console.log('`handleNextButton` ran');
+// this function will be responsible for when users interact with the "start" and "next quesdtion" button to proceed to the
+// next quiz question. This will always take you to a question unless you are done with the quiz. 
+function handleForwardButton() {
+  //.on click
+  console.log('`handleForwardButton` ran');
 }
 
 // this function will be responsible for when users interact with the "restart quiz" button to start
-// the quiz over again.
+// the quiz over again. We will need a JS reset not a page reload. 
 function handleRestartButton() {
-
+  //.on click
   console.log('`handleRestartButton` ran');
+  resetQuiz();
+}
+
+// this function should reset the quiz
+function resetQuiz() {
+  console.log('`resetQuiz` ran');
+  // quizStarted: false,
+  // questionNumber: 0,
+  // score: 0
+  renderQuizApp();
 }
 
 // this function will be our callback when the page loads. it's responsible for
-// initially rendering the Quiz App, and activating our individual functions
-// that verify the user's answer choice and user interaction with the "submit answer", "next question" and "quiz restart" buttons.
+// initially rendering the Quiz App, and activating our individual template generate functions
+// that change the HTML on the DOM depending on the current state. verify the user's answer choice and user interaction with the "submit answer", "next question" and "quiz restart" buttons.
 function handleQuizApp() {
   renderQuizApp();
-  handleSubmitButton();
-  verifyAnswerChoice();
-  displayAnswerFeedback();
-  handleNextButton();
-  handleRestartButton();
+  
 }
 
 // when the page loads, call `handleQuizApp`
