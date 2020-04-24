@@ -88,3 +88,68 @@ const store = {
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
+
+//   When the user submits the form,
+//   Check what answer they picked
+//   And tell them if they're correct
+
+
+// this function will be responsible for rendering the quiz app in it's current state
+// to the DOM
+function renderQuizApp() {
+
+  console.log('`renderQuizApp` ran');
+  const x = ''
+  //insert HTML into the DOM
+  $('#.class-or-id-goes-here').html(const from above?);
+}
+
+// this function will be responsible for when users interact with the "submit" button to submit their 
+// answer to each question of the quiz.
+function handleSubmitButton() {
+
+  console.log('`handleSubmitButton` ran');
+}
+
+// this function will be responsible for verifying if the user selected the correct answer choice. 
+function verifyAnswerChoice() {
+
+  console.log('`verifyAnswerChoice` ran');
+}
+
+// this function will be responsible for displaying a text description of the correct answer once the user has
+// submitted their answer to the quiz question. **Not sure this is necessary because renderQuizApp() may do this
+// already once the users hits submit?**
+function displayAnswerFeedback() {
+
+  console.log('`displayAnswerFeedback` ran');
+}
+
+// this function will be responsible for when users interact with the "next question" button to proceed to the
+// next quiz question.
+function handleNextButton() {
+
+  console.log('`handleNextButton` ran');
+}
+
+// this function will be responsible for when users interact with the "restart quiz" button to start
+// the quiz over again.
+function handleRestartButton() {
+
+  console.log('`handleRestartButton` ran');
+}
+
+// this function will be our callback when the page loads. it's responsible for
+// initially rendering the Quiz App, and activating our individual functions
+// that verify the user's answer choice and user interaction with the "submit answer" and "quiz restart" buttons.
+function handleQuizApp() {
+  renderQuizApp();
+  handleSubmitButton();
+  verifyAnswerChoice();
+  displayAnswerFeedback();
+  handleNextButton();
+  handleRestartButton();
+}
+
+// when the page loads, call `handleQuizApp`
+$(handleQuizApp);
