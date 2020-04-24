@@ -141,7 +141,7 @@ function handleRestartButton() {
 
 // this function will be our callback when the page loads. it's responsible for
 // initially rendering the Quiz App, and activating our individual functions
-// that verify the user's answer choice and user interaction with the "submit answer" and "quiz restart" buttons.
+// that verify the user's answer choice and user interaction with the "submit answer", "next question" and "quiz restart" buttons.
 function handleQuizApp() {
   renderQuizApp();
   handleSubmitButton();
