@@ -135,7 +135,7 @@ function generateAnswerPageHtml(){
   return ` 
   <section class="result-display">
     <p>${resultDisplay}</p>
-    <p class="correct-answer"> They are called ${store.questions[store.questionNumber].correctAnswer}.</p>
+    <p class="correct-answer"> It's ${store.questions[store.questionNumber].correctAnswer}.</p>
     <p class="score-display score-tracker">${scoreTracker()}</p>
     <button type="button" class="next-button">Run to the next question</button> 
   </section>`;
