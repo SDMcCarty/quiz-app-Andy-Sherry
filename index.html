@@ -16,32 +16,40 @@
     <h1>Welcome to the Animal Groups Quiz!</h1>
   </header>
   <main>
+
+    <p>Many animals have interesting named groups. Join our gang (elk), and see how many you know!</p>
+    <button type="submit" class="start_ quiz">Flock to the test</button>
+    <!-- flocks are for many birds, as I'm sure you know -->
+
     <h2 class="question-number">Question x of 5</h2>
-    <form role= "form" action="" method="post">
+    <form action="" method="post">
       <h3 class="question">What is a group of Geese called?</h3>
-      <input id="Giggle" type="radio" name="Goose" value="Giggle" /> <label for="Giggle">Giggle</label><br>
-      <input id="Google" type="radio" name="Goose" value="Google" /> <label for="Google">Google</label><br>
-      <input id="Gaggle" type="radio" name="Goose" value="Gaggle" /> <label for="Gaggle">Gaggle</label><br>
-      <input id="Goggle" type="radio" name="Goose" value="Goggle" /> <label for="Goggle">Goggle</label><br>
-      <button type="submit" class="submit-button">Submit</button>
+      <input id="Giggle" type="radio" name="Goose" value="Giggle" /> <label for="Giggle">Giggle</label>
+      <input id="Google" type="radio" name="Goose" value="Google" /> <label for="Google">Google</label>
+      <input id="Gaggle" type="radio" name="Goose" value="Gaggle" /> <label for="Gaggle">Gaggle</label>
+      <input id="Goggle" type="radio" name="Goose" value="Goggle" /> <label for="Goggle">Goggle</label>
     </form>
-    <p role="score-tracker" class="score-tracker">Score x out of y</p>
-  <br>
-  <br>
-  <h2 class="result-display">Correct/Incorrect!</h2>
-  <p role="correct-answer" class="correct-answer">A group of Geese is called a Gaggle</p>
-  <p role="score-tracker" class="score-display score-tracker">Score x out of y</p>
-  <form role= "form" action="" method="post">
-    <button type="submit" class="next-button">Next</button>
-  </form>
-  <br>
-  <br>
-  <h2 class="completion-message">Congratulations! You have finished the quiz!</h2>
-  <h3 class="final-result-display">Your Final Score is:</h3>
-  <p class="score-tracker score-display">Correct: X Incorrect: Y</p>
-  <form role= "form" action="" method="post">
-    <button type="submit" class="restart-button">Restart The Quiz</button>
-  </form>
+    <p class="score-tracker">Score x out of y</p>
+    <button type="submit" class="submit-button">Brace for the answer</button>
+    <!-- brace is for mallards -->
+
+  <div class="result-display">
+    <p>Correct/Incorrect!</p>
+    <p class="correct-answer">A group of Geese is called a Gaggle</p>
+    <p class="score-display score-tracker">Score x out of y</p>
+    <button type="submit" class="next-button">Run to the next question</button>
+  </div>
+  <!-- run is for salmon -->
+  
+
+  <div class="completion-message">
+    <p>Congratulations! You have finished the quiz!</p>
+    <p class="final-result-display">Your Final Score is:</p>
+    <p class="score-tracker score-display">Correct: X Incorrect: Y</p>
+    <button type="submit" class="restart-button">Cast back to the start</button>
+  </div>
+<!-- cast is for hawks -->
+
   </main>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.js" crossorigin="anonymous"></script>
   <script src="app.js"></script> 

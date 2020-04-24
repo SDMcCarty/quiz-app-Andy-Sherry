@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Example store structure
  */
@@ -5,24 +7,54 @@ const store = {
   // 5 or more questions are required
   questions: [
     {
-      question: 'What color is broccoli?',
+      question: 'What is a group of geese called?',
       answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
+        'A giggle',
+        'A gaggle',
+        'A google',
+        'A goggle'
       ],
-      correctAnswer: 'green'
+      correctAnswer: 'A gaggle'
     },
     {
-      question: 'What is the current year?',
+      question: 'What is a group of bunnies called?',
       answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
+        'A fluffle',
+        'A fluffy',
+        'A floofle',
+        'A falafle'
       ],
-      correctAnswer: '2019'
+      correctAnswer: 'A fluffle'
+    },
+    {
+      question: 'What is a group of penguins called?',
+      answers: [
+        'A wiggle',
+        'A waggle',
+        'A waddle',
+        'A woggle'
+      ],
+      correctAnswer: 'A waddle'
+    },
+    {
+      question: 'What is a group of rhinos called?',
+      answers: [
+        'A smash',
+        'A crash',
+        'A crush',
+        'A smoosh'
+      ],
+      correctAnswer: 'A crash'
+    },
+    {
+      question: 'What is a group of hedgehogs called?',
+      answers: [
+        'An array',
+        'A float',
+        'A string',
+        'A boolean'
+      ],
+      correctAnswer: 'An array'
     }
   ],
   quizStarted: false,
