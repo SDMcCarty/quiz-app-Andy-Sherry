@@ -82,14 +82,55 @@ const store = {
 // These functions return HTML templates
 
 function generateStartPageHtml(){
-
+  return `<p>Many animals have interesting named groups. Join our gang (elk), and see how many you know!</p>
+  <button type="button" class="start-button">Flock to the test</button>
+  `;
 }
 
+//keeps track of score
+function scoreTracker() {
+  return `<div class="score-tracker">Score $(store.score) out of $(store.questions.length)</div>`;
+}
+
+//generates an answer array and HTML
+function generateAnswers() {
+  const ansArr = store.questions[store.questionNumber].answers;
+  let answerHtml = '';
+  let i = 0;
+
+  ansArr.forEach(answer => {
+    answerHtml += 
+    `<input id="answer$(i + 1)" type="radio" name="answer" value="$(answer)" tabindex="$(i + 1)" required/><label for="answer$(i + 1">$(answer)</label>`;
+    i++;
+  });
+  return answerHtml;
+}
+
+//generates the question
 function generateQuestionPageHtml(){
-  
+  let currentQuestion = store.questions[store.questionNumber];
+  return `<div class="question-number">Question $(store.questionNumber + 1) of $(store.questions.length)</div>
+  <form id="quiz-form" action="" method="post">
+    <legend class="question">$(questionNumber.question)</legend>
+    $(generateAnswers())
+    <button type="submit" class="submit-button">Brace for the answer</button>
+  </form>
+  $(scoreTracker)`;
+
 }
 
-function generateAnswerPageHtml(){
+function generateAnswerPageHtml(isCorrect){
+//if isCorrect = true 
+//  generate CORRECT!
+// let congratMessage = Correct
+//if isCorrect != true
+//  generate INCORRECT
+// let congratMessage = Incorrect
+// $(congratMessage)
+// store.correctAnswer printed
+// generateScore -> GLOBAL score
+// `${score}/${queestionNumber}`
+// render
 
 }
 
@@ -130,26 +171,60 @@ function renderQuizApp() {
 // answer to each question of the quiz. This takes you to the answer page every time. 
 function handleSubmitButton() {
   //.on submit
+  $('main').on('submit', 'submit-button', event =>
+  event.preventDefault();
   console.log('`handleSubmitButton` ran');
+  const userAnswer =$('input[name="answer"].checked').val();
+  console.log(userAnswer);
+  checkAnswer();
+  //move to answer pg
+  //which question came from to display corresponding ans
+  //call checkAnswer
+  )
+  
 }
 
 // this function will be responsible for verifying if the user selected the correct answer choice. 
-function checkAnswer() {
-
+function checkAnswer(userAnswer) {
   console.log('`checkAnswer` ran');
+  if(userAnswer === store.correctAnswer) {
+    let isCorrect = true;
+    score++;
+    console.log('`checkAnswer` true');
+  } else {
+    let isCorrect = false;
+    console.log('`checkAnswer` false');
+  }
+  const answerNumber = store.questionNumber;
+  store.questionNumber++;
+  generateAnswerPageHtml();
+  //know what question -> ans selected
+  //check to see ans correct
+  //arr{obj -> ans: [arr]}
+  //store.answers[0, 1, 2, 3]
+  //when called, render generateAnswerPageHtml()
 }
 
+//initializes quiz and updates quizStarted var
+function handleStartButton() {
+  event.preventDefault();
+  console.log('`handleStartButton` ran');
+  store.quizStarted = true;
+  generateQuestionPageHtml();
+}
 // this function will be responsible for when users interact with the "start" and "next quesdtion" button to proceed to the
 // next quiz question. This will always take you to a question unless you are done with the quiz. 
-function handleForwardButton() {
+function handleNextButton() {
   //.on click
-  console.log('`handleForwardButton` ran');
+  //event.preventDefault();
+  console.log('`handleNextButton` ran');
 }
 
 // this function will be responsible for when users interact with the "restart quiz" button to start
 // the quiz over again. We will need a JS reset not a page reload. 
 function handleRestartButton() {
   //.on click
+  //event.preventDefault();
   console.log('`handleRestartButton` ran');
   resetQuiz();
 }
@@ -168,6 +243,8 @@ function resetQuiz() {
 // that change the HTML on the DOM depending on the current state. verify the user's answer choice and user interaction with the "submit answer", "next question" and "quiz restart" buttons.
 function handleQuizApp() {
   renderQuizApp();
+  handleSubmitButton();
+  checkAnswer();
   
 }
 
