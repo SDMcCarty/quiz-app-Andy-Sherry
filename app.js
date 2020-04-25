@@ -102,7 +102,7 @@ function generateAnswers() {
 
   ansArr.forEach(answer => {
     answerHtml += 
-    `<input id="answer${i + 1}" type="radio" name="answer" value="${answer}" tabindex="${i + 1}" required/><label for="answer${i + 1}">${answer}</label>`;
+    `<input id="answer${i + 1}" type="radio" name="answer" value="${answer}" tabindex="${i + 1}" required/><label for="answer${i + 1}">${answer}</label><br>`;
     i++;
   });
   return answerHtml;
@@ -155,7 +155,14 @@ function generateAnswerPageHtml(){
 }
 
 function generateResultsPageHtml(){
-  return `<p> Hello World! </p>`;
+  return `
+    <section class="completion-message">
+       <p>Congratulations! You have finished the quiz!</p>
+       <p class="final-result-display">Your Final Score is: </p>
+       <p class="score-tracker score-display">${scoreTracker()}</p>
+       <button type="button" class="restart-button">Cast back to the start</button>
+     </section>
+  `;   
 }
 
 // this function should reset the quiz
