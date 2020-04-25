@@ -134,9 +134,9 @@ function generateAnswerPageHtml(){
   
   return ` 
   <section class="result-display">
-    <p>${resultDisplay}</p>
+    <p class="result-display">${resultDisplay}</p>
     <p class="correct-answer"> It's ${store.questions[store.questionNumber].correctAnswer}.</p>
-    <p class="score-display score-tracker">${scoreTracker()}</p>
+    <p class="score-tracker">${scoreTracker()}</p>
     <button type="button" class="next-button">Run to the next question</button> 
   </section>`;
 
@@ -157,9 +157,9 @@ function generateAnswerPageHtml(){
 function generateResultsPageHtml(){
   return `
     <section class="completion-message">
-       <p>Congratulations! You have finished the quiz!</p>
+       <p class="result-display">Congratulations! You have finished the quiz!</p>
        <p class="final-result-display">Your Final Score is: </p>
-       <p class="score-tracker score-display">${scoreTracker()}</p>
+       <p class="score-tracker">${scoreTracker()}</p>
        <button type="button" class="restart-button">Cast back to the start</button>
      </section>
   `;   
