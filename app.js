@@ -171,6 +171,7 @@ function resetQuiz() {
   store.quizStarted = false;
   store.questionNumber = 0;
   store.score = 0;
+  store.hasAnswered = 0;
 }
 
 /********** RENDER FUNCTION(S) **********/
