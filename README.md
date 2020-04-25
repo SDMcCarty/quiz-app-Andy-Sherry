@@ -1,1 +1,1 @@
-### Boilerplate app structure for Quiz App project
+### App designed by Sherry McCarty & Andy Gauthier
