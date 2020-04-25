@@ -102,7 +102,7 @@ function generateAnswers() {
 
   ansArr.forEach(answer => {
     answerHtml += 
-    `<input id="answer${i + 1}" type="radio" name="answer" value="${answer}" tabindex="${i + 1}" required/><label for="answer${i + 1}">${answer}</label><br>`;
+    `<input id="answer${i + 1}" type="radio" name="answer" value="${answer}" tabindex="${i + 1}" required/><label for="answer${i + 1}">${answer}</label>`;
     i++;
   });
   return answerHtml;
